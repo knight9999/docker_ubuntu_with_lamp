@@ -1,4 +1,4 @@
-FROM ubuntu:17.10
+FROM ubuntu:18.04
 
 MAINTAINER KENICHI NAITO
 
@@ -22,7 +22,8 @@ RUN apt-get install -y postfix
 
 RUN apt-get install -y vim
 
-RUN apt-get install -y php libapache2-mod-php php-mcrypt php-zip php-mbstring php-xml phpunit php-mysql
+RUN apt-get install -y php libapache2-mod-php php-zip php-mbstring php-xml phpunit php-mysql php-dom
+# php-mcrypt
 
 RUN apt-get install -y zip unzip
 
@@ -32,10 +33,11 @@ RUN a2enmod cgi
 
 RUN a2enmod rewrite
 
-RUN phpenmod mcrypt
+# RUN phpenmod mcrypt
 
 RUN apt-get install -y curl
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN apt-get install -y composer
+# RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 CMD ["/bin/bash"]
